@@ -17,7 +17,6 @@ int hashbreak(int hashtype, std::string hash, std::string chars, int testlen);
 int main(int argc, char *argv[])
 {
     int opt;
-    //int threads;
     std::string chars (DEFAULT_CHARS);
     std::string hashtype;
     std::string hash;
@@ -33,9 +32,6 @@ int main(int argc, char *argv[])
         case 's':
             hashtype.assign(optarg);
             break;
-        //case 't':
-        //    threads = atoi(optarg);
-        //    break;
         case 'c':
             hash.assign(optarg);
             break;
@@ -92,19 +88,6 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-//    switch (hashtype) {
-//        case 'md5':
-//            return hashbreak(0, hash);
-//            break;
-//        case 'sha256':
-//            return hashbreak(1, hash);
-//            break;
-//        default:
-//            std::cout << "ERROR: Unrecognized hash type (" << hashtype << ")" << std::endl;
-//            help(argv[0]);
-//            return 1;
-//    }
-
     return 0;
 }
 
@@ -154,10 +137,8 @@ int hashbreak(int hashtype, std::string hash, std::string chars, int testlen)
     char md5hashresult[33];
     char sha256hashresult[65];
     int charslen = chars.length();
-    //int testlen = 0;
     int oldtestlen = testlen;
     int charspos[MAX_TEST_SIZE];
-    //charspos[0] = 0;
     for (int i = 0; i < testlen+1; i++) {
         charspos[i] = 0;
     }
@@ -203,8 +184,6 @@ int hashbreak(int hashtype, std::string hash, std::string chars, int testlen)
             sha256((char*)teststring.c_str(), sha256hashresult);
             result = sha256hashresult;
         }
-        //std::cout << "STRING: " << teststring << "  HASH: " << result << std::endl;
-        //std::cout.flush();
     }
     std::cout << teststring << std::endl;
     return 0;
